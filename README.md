@@ -1,2 +1,2 @@
 # sample-application
-This sample application to use with mySuperMon
+This sample application to test with mySuperMon
