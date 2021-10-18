@@ -84,9 +84,7 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
 
 1. Now click on the added application and then click on *Add New Datasource* button to add database.
 
-![](./images/add-agent.png)
-
-![](./images/add-agent.png)
+![](https://app.mysupermon.com/assets/images/docs/mysql/config-app/config2.png)  ![](https://app.mysupermon.com/assets/images/docs/mysql/config-app/config2.png)
 
 1. Fill the form by selecting driver type , Agent, Enter Database username, Database password, Host url of Database, Port no. on whitch database is running, database name and email.
 
