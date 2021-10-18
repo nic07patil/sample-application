@@ -15,7 +15,7 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
 
     **NOTE**
     1. Replace AGENT_DATABASE_NAME with the agent supported database name
-    1. Replace IMAGE_NAME with image name you need (), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
+    1. Replace IMAGE_NAME with image name you need (MySQL, PostgreSQL, MariaDB, MSSQL, ORACLE, MongoDB), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
     1. Replace port no with agent supported port you can find it on it's docker hub overview tab.
 
     ![](./images/docker-agent-port.png)
@@ -64,13 +64,43 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
     ```
 
 
-### Add application and it's database
+### Add Agent, Application Name and Database
 
 1. Visit to [mySuperMon](https://app.mysupermon.com) and log in.
 
-1. Watch this video to add application and it's datasource
+1. Click on *Agent -> Agent Management* in the side menu and fill the form. Paste the Agent Unique Id in the *Agent Unique Id* field.
 
-[![mySuperMon](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+![](./images/add-agent.png)
+
+1. Click on *save* to add agent.
+
+1. Click on *Application -> Application Management* and click on the *New Application* Button on the page.
+
+![](https://app.mysupermon.com/assets/images/docs/mysql/config-app/config1.png)
+
+1. Fill the form and click on *save* to add application.
+
+![](https://app.mysupermon.com/assets/images/docs/mysql/config-app/config2.png)
+
+1. Now click on the added application and then click on *Add New Datasource* button to add database.
+
+![](./images/add-agent.png)
+
+![](./images/add-agent.png)
+
+1. Fill the form by selecting driver type , Agent, Enter Database username, Database password, Host url of Database, Port no. on whitch database is running, database name and email.
+
+```
+# You can find Host Url using this command
+kubectl get pods -o wide -n sockshop-dev
+
+NAME                        READY   STATUS    RESTARTS   AGE    IP                      NODE                  NOMINATED NODE   READINESS GATES
+carts-db-54b449c598-kxggb   1/1     Running   0          62d    10.42.1.20 <== HostUrl  k3d-mykeptn-agent-0   <none>           <none>
+carts-76b56b96dd-g9djp      1/1     Running   0          3h6m   10.42.1.54              k3d-mykeptn-agent-0   <none>           <none>
+
+```
+
+1. Click on Test Connection after successful connection Click on save connection
 
 ### Deploy mySuperMon Service
 
