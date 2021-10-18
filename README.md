@@ -9,6 +9,41 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
 
 ## Installation
 
+### Deploy mySuperMon database Agent
+
+1. Create a agent.yml file and copy below yml content paste into it.  and IMAGE_NAME with image name you need (), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
+
+    `NOTE`
+            Replace AGENT_DATABASE_NAME with the agent supported database name
+
+            IMAGE_NAME with image name you need (), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
+
+            Replace port no with agent supported port you can find it on it's docker hub overview tab.
+
+            ![](./images/docker-agent-port.png)
+
+    ```yml
+    apiVersion: apps/v1
+    kind: Deployment
+    metadata:
+        name: AGENT_DATABASE_NAME-agent  #Replace AGENT_DATABASE_NAME with the agent supported database name
+    spec:
+        replicas: 1
+        selector:
+            matchLabels:
+            app: AGENT_DATABASE_NAME-agent  #Replace AGENT_DATABASE_NAME with the agent supported database name
+        template:
+            metadata:
+                labels:
+                app: AGENT_DATABASE_NAME-agent  #Replace AGENT_DATABASE_NAME with the agent supported database name
+            spec:
+                containers:
+                - name: AGENT_DATABASE_NAME-agent  #Replace AGENT_DATABASE_NAME with the agent supported database name
+                image: mysupermon/IMAGE_NAME:latest  #Replace the IMAGE_NAME with image name you need, you can find myspermon images here https://hub.docker.com/u/mysupermon
+                ports:
+                - containerPort: 8111  
+    ```
+
 ### Add application and it's database
 
 1. Visit to [mySuperMon](https://app.mysupermon.com) and log in.
@@ -46,3 +81,4 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
           value: 'https://app.mysupermon.com'
     ...
     ```
+3. 
