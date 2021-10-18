@@ -2,13 +2,14 @@
 
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/keptn-contrib/mysupermon-service?include_prereleases)
 
-`The` *mysupermon-service* is a [Keptn](https://keptn.sh) service that is responsible for collecting datatbase statistics performed while test sequence executed using [mySuperMon](https://app.mysupermon.com) endpoints.
+The *mysupermon-service* is a [Keptn](https://keptn.sh) service that is responsible for collecting datatbase statistics performed while test sequence executed using [mySuperMon](https://app.mysupermon.com) endpoints.
 
 We are going to install the service in the same cluster that Keptn is running in.
 Checkout also the [installation option for Keptn on K3s](https://github.com/keptn-sandbox/keptn-on-k3s).
 
 ## Installation
 
+Before mySuperMon-service installation there are some prerequite need to follow.
 ### Deploy mySuperMon database Agent
 
 1. Create a mysupermon-agent.yml file and copy below yml content paste into it.  and IMAGE_NAME with image name you need (), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
@@ -139,7 +140,7 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
     kubectl apply -f service.yml -n keptn
     ```
 
-4. Verify mysupermon service is running user authenticated
+4. Verify mysupermon service is running user authenticated.
 
     ```
     kubectl -n keptn logs -f deployment/mysupermon-service -c mysupermon-service
@@ -153,4 +154,24 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
     Starting to poll...
     Exit using CTRL-C
 
+    ```
+
+### Usage
+
+The mySuperMon-service expects mysupermon application identifier file in the project specific keptn repo.
+
+`NOTE:` It is mandatory to provide  `mysupermon_app_identifier.txt` before triggering delivery.
+
+Here is an example on how to upload the `mysupermon_app_identifier.txt` file via keptn CLI to the project sockshop:
+
+    ```
+    keptn add-resource --project=sockshop --resource=mysupermon_app_identifier.txt
+    ```
+
+For executing performance or functional test use [locust-service](https://github.com/keptn-sandbox/locust-service)  or any other service so mySuperMon can collect database statistics.
+
+Now trigger a delivery for carts service.
+
+    ```
+    keptn trigger delivery --project=sockshop --service=carts --image=docker.io/keptnexamples/carts --tag=0.12.3
     ```
