@@ -84,7 +84,9 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
 
 1. Now click on the added application and then click on *Add New Datasource* button to add database.
 
-![](https://app.mysupermon.com/assets/images/docs/mysql/config-app/config2.png)  ![](https://app.mysupermon.com/assets/images/docs/mysql/config-app/config2.png)
+![](./images/app-list.png)
+
+![](./images/add-datasource.png)
 
 1. Fill the form by selecting driver type , Agent, Enter Database username, Database password, Host url of Database, Port no. on whitch database is running, database name and email.
 
@@ -92,13 +94,15 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
 # You can find Host Url using this command
 kubectl get pods -o wide -n sockshop-dev
 
-NAME                        READY   STATUS    RESTARTS   AGE    IP                      NODE                  NOMINATED NODE   READINESS GATES
-carts-db-54b449c598-kxggb   1/1     Running   0          62d    10.42.1.20 <== HostUrl  k3d-mykeptn-agent-0   <none>           <none>
-carts-76b56b96dd-g9djp      1/1     Running   0          3h6m   10.42.1.54              k3d-mykeptn-agent-0   <none>           <none>
+NAME                        READY   STATUS    RESTARTS   AGE    IP                        NODE                  NOMINATED NODE   READINESS GATES
+carts-db-54b449c598-kxggb   1/1     Running   0          62d    10.42.1.20 <== Host Url   k3d-mykeptn-agent-0   <none>           <none>
+carts-76b56b96dd-g9djp      1/1     Running   0          3h6m   10.42.1.54                k3d-mykeptn-agent-0   <none>           <none>
 
 ```
 
-1. Click on Test Connection after successful connection Click on save connection
+1. Click on Test Connection after successful connection Click on save connection.
+
+![](./images/test-conn.png)
 
 ### Deploy mySuperMon Service
 
@@ -116,7 +120,7 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
     git clone https://github.com/keptn-sandbox/mySuperMon-service.git
     ```
 
-2. Before applying deployment file add your KEPTN_ENDPOINT url and KEPTN_API_TOKEN to the service.yml 'env section'.
+2. Before applying deployment file add your KEPTN_ENDPOINT url and KEPTN_API_TOKEN to the deploy/service.yml 'env section'.
 
     ```yaml
     ...
@@ -129,4 +133,24 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
           value: 'https://app.mysupermon.com'
     ...
     ```
-3. 
+3. Apply deploy/service.yml file.
+
+    ```
+    kubectl apply -f service.yml -n keptn
+    ```
+
+4. Verify mysupermon service is running user authenticated
+
+    ```
+    kubectl -n keptn logs -f deployment/mysupermon-service -c mysupermon-service
+
+
+    Subscribing to deployment.triggered
+    Subscribing to test.triggered
+    Found environment variables KEPTN_ENDPOINT and KEPTN_API_TOKEN, polling events from API
+    Found enviroment variables MYSUPERMON_USERNAME, MYSUPERMON_PASSWORD, MYSUPERMON_ENDPOINT
+    INFO --> Mysupermon authentication successful.
+    Starting to poll...
+    Exit using CTRL-C
+
+    ```
