@@ -11,7 +11,7 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
 
 ### Deploy mySuperMon database Agent
 
-1. Create a agent.yml file and copy below yml content paste into it.  and IMAGE_NAME with image name you need (), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
+1. Create a mysupermon-agent.yml file and copy below yml content paste into it.  and IMAGE_NAME with image name you need (), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
 
     **NOTE**
     1. Replace AGENT_DATABASE_NAME with the agent supported database name
@@ -43,6 +43,26 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
                 ports:
                 - containerPort: 8111  
     ```
+
+1. Apply the mysupermon-agent.yml file using below command in the in the same cluster that Keptn is running in.
+
+    ```
+    kubectl apply -f mysupermon-agent.yml -n keptn
+    ```
+
+1. After deploying the agent check the logs of agent using below command and copy Agent unique id
+
+    ```
+    kubectl logs -f deployment/AGENT_DEPLOYMENT_NAME -n keptn
+    ```
+
+    ```
+    ################################################################
+    ########## Agent Unique Id : 9604729ADE98MONGO-AGENT-DEPLOY-77C99D9885-9D882190-MONGODB ################
+    ################################################################
+
+    ```
+
 
 ### Add application and it's database
 
