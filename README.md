@@ -15,4 +15,4 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
 
 1. Watch this video to add application and it's datasource
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](https://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+[![](https://i.ytimg.com/vi_webp/1nU73Qs99-E/sddefault.webp)](https://www.youtube.com/watch?v=1nU73Qs99-E)
