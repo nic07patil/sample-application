@@ -77,19 +77,20 @@ Before mySuperMon-service installation there are some prerequite need to follow.
 
 1. Click on *Application -> Application Management* and click on the *New Application* Button on the page.
 
-![](https://app.mysupermon.com/assets/images/docs/mysql/config-app/config1.png)
+![](./images/app-list.png)
 
 1. Fill the form and click on *save* to add application.
 
-![](https://app.mysupermon.com/assets/images/docs/mysql/config-app/config2.png)
+![](./images/add-app.png)
 
 1. Now click on the added application and then click on *Add New Datasource* button to add database.
 
-![](./images/app-list.png)
+![](./images/app-listw.png)
 
-![](./images/add-datasource.png)
+![](./images/add-datasource-button.png)
 
 1. Fill the form by selecting driver type , Agent, Enter Database username, Database password, Host url of Database, Port no. on whitch database is running, database name and email.
+
 
 ```
 # You can find Host Url using this command
@@ -105,9 +106,9 @@ carts-76b56b96dd-g9djp      1/1     Running   0          3h6m   10.42.1.54      
 
 ![](./images/test-conn.png)
 
-### Deploy mySuperMon Service
-
 Now we will deploy the mySuperMon Service in the Keptn Cluster.
+
+### Deploy mySuperMon Service
 
 1. Create a secret using mySuperMon username and password, you can go ahead and copy/paste this next line. Make sure you are connected to the correct Kubernetes cluster.
 
@@ -175,3 +176,12 @@ Now trigger a delivery for carts service.
     ```
     keptn trigger delivery --project=sockshop --service=carts --image=docker.io/keptnexamples/carts --tag=0.12.3
     ```
+
+
+### Common tasks
+
+* Deploy the service using `kubectl`: `kubectl apply -f deploy/service.yml`
+* Delete/undeploy the service using `kubectl`: `kubectl delete -f deploy/service.yml`
+* Watch the deployment using `kubectl`: `kubectl -n keptn get deployment mysupermon-service -o wide`
+* Get logs using `kubectl`: `kubectl -n keptn logs deployment/mysupermon-service -f mysupermon-service`
+* Watch the deployed pods using `kubectl`: `kubectl -n keptn get pods -l run=mysupermon-service`
