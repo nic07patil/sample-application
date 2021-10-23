@@ -165,17 +165,17 @@ The mySuperMon-service expects mysupermon application identifier file in the pro
 
 Here is an example on how to upload the `mysupermon_app_identifier.txt` file via keptn CLI to the project sockshop:
 
-    ```console
-    keptn add-resource --project=sockshop --resource=mysupermon_app_identifier.txt
-    ```
+```console
+keptn add-resource --project=sockshop --resource=mysupermon_app_identifier.txt
+```
 
 For executing performance or functional test use [locust-service](https://github.com/keptn-sandbox/locust-service)  or any other service so mySuperMon can collect database statistics.
 
 Now trigger a delivery for carts service.
 
-    ```console
+```console
     keptn trigger delivery --project=sockshop --service=carts --image=docker.io/keptnexamples/carts --tag=0.12.3
-    ```
+```
 
 
 ### Common tasks
