@@ -174,7 +174,7 @@ For executing performance or functional test use [locust-service](https://github
 Now trigger a delivery for carts service.
 
 ```console
-    keptn trigger delivery --project=sockshop --service=carts --image=docker.io/keptnexamples/carts --tag=0.12.3
+keptn trigger delivery --project=sockshop --service=carts --image=docker.io/keptnexamples/carts --tag=0.12.3
 ```
 
 
@@ -193,3 +193,6 @@ To delete the mySuperMon-service, delete using the [`deploy/service.yaml`](deplo
 ```console
 kubectl delete -f deploy/service.yaml
 ```
+## License
+
+Please find more information in the [LICENSE](LICENSE) file.
