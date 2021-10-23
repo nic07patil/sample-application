@@ -1,6 +1,6 @@
 # mySuperMon-service
 
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/keptn-contrib/mysupermon-service?include_prereleases)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/keptn-sandbox/mysupermon-service?display_name=tag)
 
 The *mysupermon-service* is a [Keptn](https://keptn.sh) service that is responsible for collecting datatbase statistics performed while test sequence executed using [mySuperMon](https://app.mysupermon.com) endpoints.
 
@@ -12,7 +12,7 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
 Before mySuperMon-service installation there are some prerequite need to follow.
 ### Deploy mySuperMon database Agent
 
-1. Create a mysupermon-agent.yml file and copy below yml content paste into it.  and IMAGE_NAME with image name you need (), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
+1. Create a mysupermon-agent.yaml file and copy below yaml content paste into it.  and IMAGE_NAME with image name you need (), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
 
     **NOTE**
     1. Replace AGENT_DATABASE_NAME with the agent supported database name
@@ -45,21 +45,21 @@ Before mySuperMon-service installation there are some prerequite need to follow.
                 - containerPort: 8111  
     ```
 
-1. Apply the mysupermon-agent.yml file using below command in the in the same cluster that Keptn is running in.
+1. Apply the mysupermon-agent.yaml file using below command in the in the same cluster that Keptn is running in.
 
-    ```
-    kubectl apply -f mysupermon-agent.yml -n keptn
+    ```console
+    kubectl apply -f mysupermon-agent.yaml -n keptn
     ```
 
 1. After deploying the agent check the logs of agent using below command and copy Agent unique id
 
-    ```
+    ```console
     kubectl logs -f deployment/AGENT_DEPLOYMENT_NAME -n keptn
     ```
 
-    ```
+    ```console
     ################################################################
-    ########## Agent Unique Id : 9604729ADE98MONGO-AGENT-DEPLOY-77C99D9885-9D882190-MONGODB ################
+    ########## Agent Unique Id : 9604729ADE98MONGO-AGENT-DEPLOY-XXXXXXXXXX-9D882190-MONGODB ################
     ################################################################
 
     ```
@@ -92,7 +92,7 @@ Before mySuperMon-service installation there are some prerequite need to follow.
 1. Fill the form by selecting driver type , Agent, Enter Database username, Database password, Host url of Database, Port no. on whitch database is running, database name and email.
 
 
-```
+```console
 # You can find Host Url using this command
 kubectl get pods -o wide -n sockshop-dev
 
@@ -112,19 +112,19 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
 
 1. Create a secret using mySuperMon username and password, you can go ahead and copy/paste this next line. Make sure you are connected to the correct Kubernetes cluster.
 
-    ```
+    ```console
     kubectl create secret generic mysupermon --from-literal="mysupermon_username=YOUR_MYSUPERMON_USERNAME" --from-literal="mysupermon_password=YOUR_MYSUPERMON_PASSWORD" -n keptn
     ```
 
 1. Now clone the muysupermon service repo
 
-    ```
+    ```console
     git clone https://github.com/keptn-sandbox/mySuperMon-service.git
     ```
 
-2. Before applying deployment file add your KEPTN_ENDPOINT url and KEPTN_API_TOKEN to the deploy/service.yml 'env section'.
+2. Before applying deployment file add your KEPTN_ENDPOINT url and KEPTN_API_TOKEN to the deploy/service.yaml 'env section'.
 
-    ```yaml
+    ```yml
     ...
     env:
         - name: KEPTN_ENDPOINT
@@ -135,15 +135,15 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
           value: 'https://app.mysupermon.com'
     ...
     ```
-3. Apply deploy/service.yml file.
+3. Apply deploy/service.yaml file.
 
-    ```
-    kubectl apply -f service.yml -n keptn
+    ```console
+    kubectl apply -f service.yaml -n keptn
     ```
 
 4. Verify mysupermon service is running user authenticated.
 
-    ```
+    ```console
     kubectl -n keptn logs -f deployment/mysupermon-service -c mysupermon-service
 
 
@@ -165,7 +165,7 @@ The mySuperMon-service expects mysupermon application identifier file in the pro
 
 Here is an example on how to upload the `mysupermon_app_identifier.txt` file via keptn CLI to the project sockshop:
 
-    ```
+    ```console
     keptn add-resource --project=sockshop --resource=mysupermon_app_identifier.txt
     ```
 
@@ -173,15 +173,23 @@ For executing performance or functional test use [locust-service](https://github
 
 Now trigger a delivery for carts service.
 
-    ```
+    ```console
     keptn trigger delivery --project=sockshop --service=carts --image=docker.io/keptnexamples/carts --tag=0.12.3
     ```
 
 
 ### Common tasks
 
-* Deploy the service using `kubectl`: `kubectl apply -f deploy/service.yml`
-* Delete/undeploy the service using `kubectl`: `kubectl delete -f deploy/service.yml`
+* Deploy the service using `kubectl`: `kubectl apply -f deploy/service.yaml`
+* Delete/undeploy the service using `kubectl`: `kubectl delete -f deploy/service.yaml`
 * Watch the deployment using `kubectl`: `kubectl -n keptn get deployment mysupermon-service -o wide`
 * Get logs using `kubectl`: `kubectl -n keptn logs deployment/mysupermon-service -f mysupermon-service`
 * Watch the deployed pods using `kubectl`: `kubectl -n keptn get pods -l run=mysupermon-service`
+
+## Uninstall - Delete from your Kubernetes cluster
+
+To delete the mySuperMon-service, delete using the [`deploy/service.yaml`](deploy/service.yaml) file:
+
+```console
+kubectl delete -f deploy/service.yaml
+```
