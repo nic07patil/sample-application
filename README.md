@@ -161,9 +161,9 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
 
 The mySuperMon-service expects mysupermon application identifier file in the project specific keptn repo.
 
-`NOTE:` It is mandatory to provide  `mysupermon_app_identifier.txt` before triggering delivery.
+`NOTE:` It is mandatory to provide  [`mysupermon_app_identifier.txt`](test_resources/mysupermon_app_identifier.txt) before triggering delivery.
 
-Here is an example on how to upload the `mysupermon_app_identifier.txt` file via keptn CLI to the project sockshop:
+Here is an example on how to upload the [`mysupermon_app_identifier.txt`](test_resources/mysupermon_app_identifier.txt) file via keptn CLI to the project sockshop:
 
 ```console
 keptn add-resource --project=sockshop --resource=mysupermon_app_identifier.txt
