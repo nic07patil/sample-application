@@ -157,7 +157,7 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
 
     ```
 
-###Enable prometheus monitoring
+### Enable prometheus monitoring
 
 To enable the prometheus monitoring with mysupermon service we need to add job to prometheus configmap.
 
@@ -180,8 +180,8 @@ To enable the prometheus monitoring with mysupermon service we need to add job t
            - mysupermon-service.keptn.svc:8080
    ...
    ```
-   
-   
+3. Now go to \target and check if mysupermon target is up
+   ![](./images/prometheus.png)
 
 ### Usage
 
