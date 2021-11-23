@@ -167,19 +167,19 @@ To enable the prometheus monitoring with mysupermon service we need to add job t
    ```
    
 2. Add following job to the configmap `scrape_configs:`.
-  ```yml
-  ...
-  job_name: mysupermon-service
-  honor_timestamps: false
-  scrape_interval: 10s
-  scrape_timeout: 10s
-  metrics_path: /metrics
-  scheme: http 
-  static_configs:
-  - targets:
-          - mysupermon-service.keptn.svc:8080
-  ...
-  ```
+   ```yml
+   ...
+   job_name: mysupermon-service
+   honor_timestamps: false
+   scrape_interval: 10s
+   scrape_timeout: 10s
+   metrics_path: /metrics
+   scheme: http 
+   static_configs:
+   - targets:
+           - mysupermon-service.keptn.svc:8080
+   ...
+   ```
    
    
 
