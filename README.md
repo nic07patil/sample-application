@@ -128,9 +128,9 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
     ...
     env:
         - name: KEPTN_ENDPOINT
-          value: '' #TODO: Add your keptn api endpoint eg: http://1.2.3.4.nip.io/api
+          value: ''
         - name: KEPTN_API_TOKEN
-          value: '' #TODO: Add your keptn api token
+          value: ''
         - name: MYSUPERMON_ENDPOINT
           value: 'https://app.mysupermon.com'
     ...
@@ -156,6 +156,30 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
     Exit using CTRL-C
 
     ```
+
+###Enable prometheus monitoring
+
+To enable the prometheus monitoring with mysupermon service we need to add job to prometheus configmap.
+
+1. Edit prometheus configmap using following command.
+   ```console
+   kubectl edit configmap prometheus-server -n monitoring
+   ```
+   
+2. Add following job to the configmap `scrape_configs:`.
+   ```yml
+  job_name: mysupermon-service
+  honor_timestamps: false
+  scrape_interval: 10s
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http 
+  static_configs:
+  - targets:
+          - mysupermon-service.keptn.svc:8080
+   ```
+   
+   
 
 ### Usage
 
