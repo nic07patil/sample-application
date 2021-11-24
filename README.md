@@ -116,7 +116,7 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
     kubectl create secret generic mysupermon --from-literal="mysupermon_username=YOUR_MYSUPERMON_USERNAME" --from-literal="mysupermon_password=YOUR_MYSUPERMON_PASSWORD" -n keptn
     ```
 
-1. Now clone the muysupermon service repo
+1. Now clone the mysupermon service repo
 
     ```console
     git clone https://github.com/keptn-sandbox/mySuperMon-service.git
