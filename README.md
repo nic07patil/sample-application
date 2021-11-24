@@ -167,7 +167,7 @@ To enable the prometheus monitoring with mysupermon service we need to add job t
            - mysupermon-service.keptn.svc:8080
    ...
    ```
-3. Now go to \target and check if mysupermon target state is up.
+3. Now go to PROMETHEUS_ENDPOINT\target and check if mysupermon target state is up.
 
    ![](./images/prometheus.png)
 
