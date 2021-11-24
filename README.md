@@ -69,7 +69,7 @@ Before mySuperMon-service installation there are some prerequite need to follow.
 
 1. Visit to [mySuperMon](https://app.mysupermon.com) and log in.
 
-1. Click on *Agent -> Agent Management* in the side menu and fill the form. Paste the Agent Unique Id in the *Agent Unique Id* field.
+1. Click on *Agent -> Agent Management* in the side menu and fill the form. Paste the Agent Unique Id (9604729ADE98MONGO-AGENT-DEPLOY-XXXXXXXXXX-9D882190-MONGODB) in the *Agent Unique Id* field.
 
 ![](./images/add-agent.png)
 
