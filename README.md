@@ -128,7 +128,7 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
     kubectl apply -f service.yaml -n keptn
     ```
 
-3. Verify mysupermon service is running user authenticated.
+3. Verify mysupermon service is running and user authenticated.
 
     ```console
     kubectl -n keptn logs -f deployment/mysupermon-service -c mysupermon-service
