@@ -122,26 +122,13 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
     git clone https://github.com/keptn-sandbox/mySuperMon-service.git
     ```
 
-2. Before applying deployment file add your KEPTN_ENDPOINT url and KEPTN_API_TOKEN to the [`deploy/service.yaml`](deploy/service.yaml) 'env section'.
-
-    ```yml
-    ...
-    env:
-        - name: KEPTN_ENDPOINT
-          value: ''
-        - name: KEPTN_API_TOKEN
-          value: ''
-        - name: MYSUPERMON_ENDPOINT
-          value: 'https://app.mysupermon.com'
-    ...
-    ```
-3. Apply [`deploy/service.yaml`](deploy/service.yaml) file.
+2. Apply [`deploy/service.yaml`](deploy/service.yaml) file.
 
     ```console
     kubectl apply -f service.yaml -n keptn
     ```
 
-4. Verify mysupermon service is running user authenticated.
+3. Verify mysupermon service is running user authenticated.
 
     ```console
     kubectl -n keptn logs -f deployment/mysupermon-service -c mysupermon-service
