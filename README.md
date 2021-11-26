@@ -173,7 +173,7 @@ But before that we need to setup the prometheus monitoring for that follow this 
    ```console
    kubectl port-forward svc/prometheus-server 8080:80 -n monitoring
    ```
-   Prometheus is then available on [`localhost:8080/targets`](localhost:8080/targets) where you can see the targets for the service:
+   Prometheus is then available on [`localhost:8080/targets`](http://localhost:8080/targets) where you can see the targets for the service:
 
    ![](./images/prometheus.png)
 
