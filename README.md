@@ -147,6 +147,7 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
 ### Enable prometheus monitoring
 
 To enable the prometheus monitoring with mysupermon service we need to add job to prometheus configmap.
+But before that we need to setup the prometheus monitoring for that follow this document [`Setup Prometheus Monitoring`](https://tutorials.keptn.sh/tutorials/keptn-full-tour-prometheus-09/index.html?index=..%2F..index#12)
 
 1. Edit prometheus configmap using following command.
    ```console
