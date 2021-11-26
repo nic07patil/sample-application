@@ -12,7 +12,7 @@ Checkout also the [installation option for Keptn on K3s](https://github.com/kept
 Before mySuperMon-service installation there are some prerequisite need to follow.
 ### Deploy mySuperMon database Agent
 
-1. Create a mysupermon-agent.yaml file and copy below yaml content paste into it.  and IMAGE_NAME with image name you need (), you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
+1. Create a mysupermon-agent.yaml file and copy below yaml content paste into it.  and IMAGE_NAME with image name you need, you can find myspermon agent images here [mySuperMon Docker hub](https://hub.docker.com/u/mysupermon)
 
     **NOTE**
     1. Replace AGENT_DATABASE_NAME with the agent supported database name
