@@ -146,15 +146,15 @@ Now we will deploy the mySuperMon Service in the Keptn Cluster.
 
 ### Enable prometheus monitoring
 
-To enable the prometheus monitoring with mysupermon service we need to add job to prometheus configmap.
-But before that we need to setup the prometheus monitoring for that follow this document [`Setup Prometheus Monitoring`](https://tutorials.keptn.sh/tutorials/keptn-full-tour-prometheus-09/index.html?index=..%2F..index#12)
+To enable the prometheus monitoring with mysupermon service we need to add scrape jobs to prometheus configmap.
+But before that we need to setup the prometheus monitoring for that follow this document [`Setup Prometheus Monitoring`](https://tutorials.keptn.sh/tutorials/keptn-full-tour-prometheus-09/index.html?index=..%2F..index#12).
 
 1. Edit prometheus configmap using following command.
    ```console
    kubectl edit configmap prometheus-server -n monitoring
    ```
    
-2. Add following job to the configmap `scrape_configs:`.
+2. Add following scrape job to the configmap `scrape_configs:`.
    ```yml
    ...
    job_name: mysupermon-service
@@ -168,7 +168,12 @@ But before that we need to setup the prometheus monitoring for that follow this 
            - mysupermon-service.keptn.svc:8080
    ...
    ```
-3. Now go to PROMETHEUS_ENDPOINT\target and check if mysupermon target state is up.
+3. To verify that the mySuperMon-service scrape jobs are correctly set up, you can access Prometheus by enabling port-forwarding for the prometheus-service:
+   
+   ```console
+   kubectl port-forward svc/prometheus-server 8080:80 -n monitoring
+   ```
+   Prometheus is then available on [`localhost:8080/targets`](localhost:8080/targets) where you can see the targets for the service:
 
    ![](./images/prometheus.png)
 
